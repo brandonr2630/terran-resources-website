@@ -1,0 +1,14 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    uses: brandonr2630/projects/.github/workflows/deploy.yml@master
+    with:
+      deploy_dir: /home/terranre/public_html/terranresources.com
+    secrets: inherit
