@@ -6,7 +6,7 @@ Live URL: `terranresources.com` · Repo: `brandonr2630/terran-resources-website`
 
 Static HTML/CSS/JS marketing site. No build system or bundler — files deployed as-is.
 
-- **`index.html`** — main page (early scaffold; contact form not yet wired)
+- **`index.html`** — main page, fully built out (hero, companies, contact section); contact form is UI-only, not wired to a backend
 
 ## Deployment
 
