@@ -1,6 +1,6 @@
 # Terran Resources Website — Handoff
 
-*Last updated: 2026-06-06 · Session 1*
+*Last updated: 2026-08-31 · Session 2*
 
 ---
 
@@ -16,18 +16,16 @@
 
 ## Status
 
-Early scaffold. `index.html` exists but the site is not yet built out or deployed.
+`index.html` is fully built out — hero, company cards, contact section with JSON-LD schema, sticky nav, scroll animations, footer. Not yet deployed; no automated deploy workflow exists.
 
 ---
 
 ## Known Issues / Blockers
 
 - No GitHub Actions deploy workflow yet
-- Contact form backend not wired
-- Site content not yet designed or written
+- Contact form is UI-only: `handleSubmit()` just calls `preventDefault()` and flips the button text — no request is sent anywhere, so submissions are lost
 
 ## Next Up
 
-- Build out site content
 - Add deploy workflow (same cPanel Fileman API pattern as other projects)
-- Wire contact form backend
+- Wire contact form backend (form + `handleSubmit()` are at the bottom of `index.html`)
