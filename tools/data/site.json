@@ -1,0 +1,64 @@
+{
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "About Us", "href": "/about-us/" },
+    { "label": "Services", "href": "/services/" },
+    { "label": "Products", "href": "/products/" },
+    { "label": "Blog", "href": "/blog/" }
+  ],
+  "contact": {
+    "address": "18591 South Dixie Highway, Cutler Bay, FL 33157, USA",
+    "phone": "1 305 922 7498",
+    "email": "info@terranresources.com"
+  },
+  "footer": "All content Copyright Terran Resources 2017",
+  "projects": [],
+  "clients": [],
+  "services": [],
+  "core_values": [],
+  "pages": {
+    "home": {
+      "path": "/",
+      "title": "Terran Resources",
+      "description": "A specialist mineral resource management and construction materials consulting company registered in the United States of America with operations in Florida and several Caribbean territories.",
+      "sections": [
+        {
+          "type": "text",
+          "paragraphs": [
+            "A specialist mineral resource management and construction materials consulting company registered in the United States of America with Operations in Florida and several Caribbean territories."
+          ]
+        }
+      ]
+    },
+    "about": {
+      "path": "/about-us/",
+      "title": "About Us - Terran Resources",
+      "description": "About Terran Resources, a specialist mineral resource management and construction materials consulting company.",
+      "sections": []
+    },
+    "services": {
+      "path": "/services/",
+      "title": "Services - Terran Resources",
+      "description": "Consulting, engineering and construction materials services from Terran Resources.",
+      "sections": []
+    },
+    "products": {
+      "path": "/products/",
+      "title": "Products - Terran Resources",
+      "description": "Aggregate processing, material handling and plant technology from Terran Resources.",
+      "sections": []
+    },
+    "blog": {
+      "path": "/blog/",
+      "title": "Blog - Terran Resources",
+      "description": "News and updates from Terran Resources.",
+      "sections": []
+    },
+    "welcome": {
+      "path": "/welcome/",
+      "title": "Welcome - Terran Resources",
+      "description": "Welcome to the Terran Resources blog.",
+      "sections": []
+    }
+  }
+}

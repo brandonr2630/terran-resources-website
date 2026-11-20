@@ -1,0 +1,30 @@
+:root { --link: #7E1416; --text: #282828; --head: #222222; --menu: #777777; --bg: #FFFFFF; }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.6 'Oxygen', Arial, sans-serif; overflow-x: hidden; }
+img { max-width: 100%; height: auto; }
+a { color: var(--link); }
+h1, h2, h3, h4 { font-family: 'Maven Pro', Arial, sans-serif; color: var(--head); line-height: 1.25; }
+.container { max-width: 1188px; margin: 0 auto; padding: 0 16px; }
+.site-header { border-bottom: 1px solid #e5e5e5; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.logo { display: block; line-height: 0; }
+.logo img { width: 280px; max-width: 100%; height: auto; }
+.site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 28px; }
+.site-nav a { font-family: 'Maven Pro', Arial, sans-serif; font-size: 16px; color: var(--menu); text-decoration: none; padding: 8px 0; display: block; }
+.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--link); }
+.nav-toggle { display: none; background: none; border: 1px solid #ccc; border-radius: 4px; width: 44px; height: 44px; padding: 10px; cursor: pointer; flex-direction: column; justify-content: space-between; }
+.nav-toggle span { display: block; height: 2px; background: var(--menu); }
+.section { margin: 32px 0; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
+.card img { display: block; margin-bottom: 8px; }
+.site-footer { margin-top: 48px; padding: 24px 0; border-top: 1px solid #e5e5e5; color: var(--menu); }
+.site-footer address { font-style: normal; }
+.copyright { margin: 12px 0 0; }
+@media (max-width: 767px) {
+  .nav-toggle { display: flex; }
+  .site-nav { display: none; width: 100%; }
+  .site-nav.open { display: block; }
+  .site-nav ul { flex-direction: column; gap: 0; padding-bottom: 8px; }
+  .site-nav a { padding: 12px 0; border-top: 1px solid #eee; }
+}

@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const partial = process.argv.includes('--partial');
-const SKIP = new Set(['docs', 'tools', '.git', '.superpowers', 'node_modules']);
+const SKIP = new Set(['docs', 'tools', '.git', '.claude', '.superpowers', 'node_modules']);
 const REQUIRED = ['/', '/about-us/', '/services/', '/products/', '/blog/', '/welcome/'];
 const ICON = '/assets/img/Web-Logo2-01.png';
 
@@ -29,7 +29,9 @@ function walk(dir, out = []) {
 function resolves(urlPath) {
   const p = urlPath.split('#')[0].split('?')[0];
   if (p === '') return true;
-  const rel = decodeURIComponent(p).replace(/^\/+/, '');
+  let dec;
+  try { dec = decodeURIComponent(p); } catch { return false; }
+  const rel = dec.replace(/^\/+/, '');
   const abs = join(root, rel);
   if (existsSync(abs) && statSync(abs).isFile()) return true;
   if (existsSync(join(abs, 'index.html'))) return true;
