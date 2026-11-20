@@ -21,6 +21,14 @@
  *   page.h1_hidden: true makes the h1 visually hidden (still read by screen readers).
  *   Any section may carry an optional "id" (letters, digits, dashes) used as the element id.
  * hrefs in site.json must be root-relative (/...) or https (no javascript: URLs).
+ *
+ * Project pages (generated, not listed in site.json "pages")
+ *   site.projects[] = { slug, title, image, client, date?, body: [string] }
+ *   Each entry becomes /project/<slug>/ (project/<slug>/index.html) via projectPage():
+ *   h1 = title; sections: "Project Overview" (body paragraphs), "Project Details"
+ *   (Client, and Date when present), "Other Projects" (links to the other projects,
+ *   same order as the home page). <title> = "<title> | Terran Resources";
+ *   meta description = "Terran Resources - <title>". No project page is a nav item.
  * Other site.json keys (nav, contact, footer, projects, clients, services,
  * core_values) are shared data that later tasks render by adding builders below.
  */
@@ -183,8 +191,29 @@ export function outPath(urlPath) {
   return urlPath === '/' ? 'index.html' : `${urlPath.replace(/^\/|\/$/g, '')}/index.html`;
 }
 
+export function projectPage(p) {
+  const details = [`Client: ${p.client}`];
+  if (p.date) details.push(`Date: ${p.date}`);
+  return {
+    path: `/project/${p.slug}/`,
+    title: `${p.title} | Terran Resources`,
+    description: `Terran Resources - ${p.title}`,
+    h1: p.title,
+    sections: [
+      { type: 'text', heading: 'Project Overview', paragraphs: p.body },
+      { type: 'list', heading: 'Project Details', items: details },
+      { type: 'list', heading: 'Other Projects', id: 'other-projects', items: site.projects.filter((o) => o.slug !== p.slug).map((o) => ({ text: o.title, href: `/project/${o.slug}/` })) },
+    ],
+  };
+}
+
 if (process.argv[1] && fileURLToPath(import.meta.url) === join(process.argv[1])) {
   for (const page of Object.values(site.pages)) {
+    writePage(outPath(page.path), render(page));
+    console.log(`wrote ${outPath(page.path)}`);
+  }
+  for (const p of site.projects) {
+    const page = projectPage(p);
     writePage(outPath(page.path), render(page));
     console.log(`wrote ${outPath(page.path)}`);
   }
