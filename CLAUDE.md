@@ -4,13 +4,18 @@ Live URL: `terranresources.com` · Repo: `brandonr2630/terran-resources-website`
 
 ## Architecture
 
-Static HTML/CSS/JS marketing site. No build system or bundler — files deployed as-is.
+Static HTML/CSS/JS site, 17 pages: `/`, `/about-us/`, `/services/`, `/products/`, `/blog/`, `/welcome/` and 11 `/project/<slug>/` pages (each `<dir>/index.html`). No PHP, no frameworks, no npm dependencies.
 
-- **`index.html`** — main page, fully built out (hero, companies, contact section); contact form is UI-only, not wired to a backend
+- **Source of truth:** `tools/data/site.json` (content) and `tools/generate.mjs` (layout/templates). Run `node tools/generate.mjs` to rewrite every page. The generated HTML is committed; there is no build on the server. Do not hand-edit generated pages.
+- **Assets:** `assets/css/style.css`, `assets/js/site.js` (nav toggle, core-values slider), `assets/img/`. Root-relative paths only (`/assets/...`).
+- **History:** the old WordPress site is retired. It broke on 2026-10-31 (Contact Form 7 needed PHP 8.3+; WPBakery and Slider Revolution only work on PHP 7). Content was rebuilt from the Wayback Machine snapshot of 2026-08-13.
+- **Check:** `node tools/check-site.mjs` validates required head tags, root-relative assets, internal link resolution and the required paths. It must pass before deploy.
 
 ## Deployment
 
-No automated workflow yet. When ready, follow the same cPanel Fileman API pattern used by the other projects. Required secrets: `CPANEL_API_TOKEN`, `CPANEL_HOST`, `CPANEL_USER`. Deploy dir: `/home/terranre/public_html/terranresources.com`.
+Manual only: Actions -> "Deploy to GreenGeeks (rsync over SSH)" -> Run workflow (`.github/workflows/deploy.yml`). It runs the check, then rsyncs only the site files (`index.html`, `about-us/`, `services/`, `products/`, `blog/`, `welcome/`, `project/`, `assets/`) to `/home/terranre/public_html` with no `--delete`. Secrets: `SSH_PRIVATE_KEY`, `SSH_HOST`, `SSH_USER`, optional `SSH_PORT` (default 22). The cPanel Fileman API is not used (the host WAF blocks it).
+
+**Cutover not done yet:** moving the WordPress files aside in `public_html` is a separate, owner-confirmed server step. Until then the live site is still the broken WordPress install. Add a push-to-master trigger to the workflow only after cutover.
 
 ## Conventions
 

@@ -1,29 +1,18 @@
 # Terran Resources Website
 
-Marketing website for the Terran Resources industrial group.
+Static HTML/CSS/JS site for `terranresources.com` (17 pages: `/`, `/about-us/`, `/services/`, `/products/`, `/blog/`, `/welcome/` and 11 `/project/<slug>/` pages). No PHP, no frameworks, no npm dependencies.
 
-**Live:** https://www.terranresources.com (deploy not yet wired)
+## Content and build
 
-## Structure
-
-| File | Purpose |
-|------|---------|
-| `index.html` | Homepage scaffold |
+- Content source: `tools/data/site.json`; layout and templates: `tools/generate.mjs`.
+- `node tools/generate.mjs` regenerates the committed output (every `index.html`) from `tools/data/site.json`. Do not hand-edit generated pages.
+- `node tools/check-site.mjs` validates head tags, root-relative assets, internal links and required paths. It must pass before deploy.
 
 ## Deploy
 
-No automated workflow yet. When ready, follow the same cPanel Fileman API pattern used by `q2m-website` and `q2-machines-job-cards`. Required GitHub Secrets: `CPANEL_API_TOKEN`, `CPANEL_HOST`, `CPANEL_USER`.
+Manual only: `.github/workflows/deploy.yml` (SSH + rsync to GreenGeeks). Secrets: `SSH_PRIVATE_KEY`, `SSH_HOST`, `SSH_USER`, optional `SSH_PORT`. See the Deployment section of `CLAUDE.md` for details.
 
-## AI Feature Ideas
-
-Reference implementations from [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) that map to plausible next features once the site is built out:
-
-| Idea | Reference example |
-|------|--------------------|
-| FAQ / contact chatbot for the group's companies and services | [`advanced_llm_apps/thinkpath_chatbot_app`](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/thinkpath_chatbot_app) |
-| Natural-language search across group company/service info | [`rag_tutorials/ai_blog_search`](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/ai_blog_search) |
-
-These are starting points, not dependencies — evaluate before wiring into the site.
+Cutover is a separate, owner-confirmed server step and has not been done yet; until then the live site is still the old WordPress install. See `handoff.md` for the cutover checklist.
 
 ## Repository
 

@@ -1,0 +1,53 @@
+name: Deploy to GreenGeeks (rsync over SSH)
+
+# Manual runs only. The push-to-master trigger must be added AFTER the
+# owner-approved server cutover (WordPress files moved aside), otherwise a
+# push would overlay the static site on the live WordPress docroot.
+# The cPanel Fileman HTTP API is not used: the host WAF blocks it (HTTP 415).
+on:
+  workflow_dispatch:
+
+env:
+  DEPLOY_DIR: /home/terranre/public_html
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check site (fails the deploy on any problem)
+        run: node tools/check-site.mjs
+
+      - name: Configure SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+        run: |
+          PORT="${SSH_PORT:-22}"
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Rsync site files (no --delete)
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+        run: |
+          PORT="${SSH_PORT:-22}"
+          # Explicit list of site files only; the live docroot also holds other
+          # sites, so never sync the whole repo and never use --delete.
+          rsync -rlptvz \
+            --exclude='.DS_Store' \
+            -e "ssh -i ~/.ssh/deploy_key -p $PORT -o StrictHostKeyChecking=yes" \
+            index.html about-us services products blog welcome project assets \
+            "$SSH_USER@$SSH_HOST:$DEPLOY_DIR/"
