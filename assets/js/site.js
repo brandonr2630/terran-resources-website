@@ -32,8 +32,8 @@
     }
     var controls = document.createElement('div');
     controls.className = 'slider-controls';
-    var prev = btn('prev', 'Previous slide', '‹');
-    var next = btn('next', 'Next slide', '›');
+    var prev = btn('prev', 'Previous slide', '\u2039');
+    var next = btn('next', 'Next slide', '\u203A');
     var toggle = btn('toggle', 'Pause automatic slide show', 'Pause');
     var dots = slides.map(function (s, i) {
       var d = btn('dot', 'Show slide ' + (i + 1));
