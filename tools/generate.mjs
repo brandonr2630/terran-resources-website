@@ -174,7 +174,7 @@ ${h1}${sections}
 </main>
 <footer class="site-footer">
 <div class="container">
-<address>${esc(contact.address)}<br>Tel <a href="tel:+${esc(contact.phone.replace(/\D+/g, ''))}">${esc(contact.phone)}</a><br><a href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></address>
+<address>${[].concat(contact.address).map(esc).join('<br>')}<br>Tel <a href="tel:${esc(contact.phone_tel)}">${esc(contact.phone)}</a><br><a href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></address>
 <p class="copyright">${esc(site.footer)}</p>
 </div>
 </footer>

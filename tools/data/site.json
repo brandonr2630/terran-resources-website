@@ -26,8 +26,9 @@
     }
   ],
   "contact": {
-    "address": "18591 South Dixie Highway, Cutler Bay, FL 33157, USA",
-    "phone": "1 305 922 7498",
+    "address": ["71 Warren Road, Bejucal", "Cunupia, Trinidad W.I."],
+    "phone": "(868) 230 9702",
+    "phone_tel": "+18682309702",
     "email": "info@terranresources.com"
   },
   "footer": "All content Copyright Terran Resources 2017",
