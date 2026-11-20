@@ -17,6 +17,7 @@
  *   { type: "cards", heading?, level?, cards: [{ title, text?, image?, href? }] }
  *       image = root-relative path like "/assets/img/x.png"; href = root-relative or https URL.
  *   Any section may carry an optional "id" (letters, digits, dashes) used as the element id.
+ * hrefs in site.json must be root-relative (/...) or https (no javascript: URLs).
  * Other site.json keys (nav, contact, footer, projects, clients, services,
  * core_values) are shared data that later tasks render by adding builders below.
  */

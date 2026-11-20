@@ -22,9 +22,10 @@ h1, h2, h3, h4 { font-family: 'Maven Pro', Arial, sans-serif; color: var(--head)
 .site-footer address { font-style: normal; }
 .copyright { margin: 12px 0 0; }
 @media (max-width: 767px) {
-  .nav-toggle { display: flex; }
-  .site-nav { display: none; width: 100%; }
-  .site-nav.open { display: block; }
+  .js .nav-toggle { display: flex; }
+  .site-nav { width: 100%; }
+  .js .site-nav { display: none; }
+  .js .site-nav.open { display: block; }
   .site-nav ul { flex-direction: column; gap: 0; padding-bottom: 8px; }
   .site-nav a { padding: 12px 0; border-top: 1px solid #eee; }
 }

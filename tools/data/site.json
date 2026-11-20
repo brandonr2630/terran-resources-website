@@ -33,31 +33,31 @@
     "about": {
       "path": "/about-us/",
       "title": "About Us - Terran Resources",
-      "description": "About Terran Resources, a specialist mineral resource management and construction materials consulting company.",
+      "description": "A specialist mineral resource management and construction materials consulting company registered in the United States of America with Operations in Florida and several Caribbean territories.",
       "sections": []
     },
     "services": {
       "path": "/services/",
       "title": "Services - Terran Resources",
-      "description": "Consulting, engineering and construction materials services from Terran Resources.",
+      "description": "Terran Resources - Services",
       "sections": []
     },
     "products": {
       "path": "/products/",
       "title": "Products - Terran Resources",
-      "description": "Aggregate processing, material handling and plant technology from Terran Resources.",
+      "description": "Terran Resources - Products",
       "sections": []
     },
     "blog": {
       "path": "/blog/",
       "title": "Blog - Terran Resources",
-      "description": "News and updates from Terran Resources.",
+      "description": "Terran Resources - Blog",
       "sections": []
     },
     "welcome": {
       "path": "/welcome/",
       "title": "Welcome - Terran Resources",
-      "description": "Welcome to the Terran Resources blog.",
+      "description": "Terran Resources - Welcome",
       "sections": []
     }
   }
