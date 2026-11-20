@@ -17,7 +17,7 @@
  *   { type: "cards", heading?, level?, cards: [{ title, text?, image?, href? }] }
  *       image = root-relative path like "/assets/img/x.png"; href = root-relative or https URL.
  *   { type: "core_values" | "services" | "video" | "projects" | "blog_teaser" | "clients", id?, heading? }
- *       render the shared site.json keys of the same name (home page only).
+ *       render the shared site.json keys of the same name (home, services and blog pages).
  *   page.h1_hidden: true makes the h1 visually hidden (still read by screen readers).
  *   Any section may carry an optional "id" (letters, digits, dashes) used as the element id.
  * hrefs in site.json must be root-relative (/...) or https (no javascript: URLs).
