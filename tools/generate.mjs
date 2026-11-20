@@ -16,6 +16,9 @@
  *   { type: "list",  heading?, level?, items: [string | {text, href?}] }
  *   { type: "cards", heading?, level?, cards: [{ title, text?, image?, href? }] }
  *       image = root-relative path like "/assets/img/x.png"; href = root-relative or https URL.
+ *   { type: "core_values" | "services" | "video" | "projects" | "blog_teaser" | "clients", id?, heading? }
+ *       render the shared site.json keys of the same name (home page only).
+ *   page.h1_hidden: true makes the h1 visually hidden (still read by screen readers).
  *   Any section may carry an optional "id" (letters, digits, dashes) used as the element id.
  * hrefs in site.json must be root-relative (/...) or https (no javascript: URLs).
  * Other site.json keys (nav, contact, footer, projects, clients, services,
@@ -59,6 +62,57 @@ const builders = {
     });
     return cards.length ? `<div class="cards">\n${cards.join('\n')}\n</div>` : '';
   },
+  // Home page sections: render shared site.json data (no copy of their own).
+  core_values: () => {
+    const cv = site.core_values || [];
+    if (!cv.length) return '';
+    const n = cv.length;
+    const slides = cv.map((c, i) => {
+      const defn = String(c.definition || '').split('\n').filter(Boolean).map((l) => `<span>${esc(l)}</span>`).join('<br>');
+      return `<figure class="slide" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${n}">
+<img src="${esc(c.image)}" alt="" width="1920" height="500"${i ? ' loading="lazy"' : ''}>
+<figcaption><strong class="cv-word">${esc(c.word)}</strong><span class="cv-phonetic">${esc(c.phonetic)}</span><span class="cv-def">${defn}</span></figcaption>
+</figure>`;
+    });
+    return `<div class="slides">
+${slides.join('\n')}
+</div>`;
+  },
+  services: () => {
+    const items = (site.services || []).map((v) => `<div class="card service"><h2>${esc(v.title)}</h2><p>${esc(v.blurb)}</p></div>`);
+    return items.length ? `<div class="cards">
+${items.join('\n')}
+</div>` : '';
+  },
+  video: (s) => {
+    const v = site.video;
+    if (!v) return '';
+    return `<div class="video-frame"><iframe src="${esc(v.embed)}" title="${esc(v.title)}" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"></iframe></div>
+<p class="video-link"><a href="${esc(v.watch)}">${esc(v.watch)}</a></p>`;
+  },
+  projects: () => {
+    const cards = (site.projects || []).map((p) => `<div class="card">${p.image ? `<img src="${esc(p.image)}" alt="" width="200" height="200" loading="lazy">` : ''}<h3>${link(p.title, `/project/${p.slug}/`)}</h3></div>`);
+    return cards.length ? `<div class="cards projects">
+${cards.join('\n')}
+</div>` : '';
+  },
+  blog_teaser: () => {
+    const b = site.blog_teaser;
+    if (!b) return '';
+    return `<h3>${link(b.title, b.href)}</h3>
+<p>${esc(b.text)} ${link(b.more, b.href)}</p>`;
+  },
+  clients: () => {
+    const items = (site.clients || []).map((c) => `<li>${esc(c)}</li>`);
+    return items.length ? `<ul class="clients">
+${items.join('\n')}
+</ul>` : '';
+  },
+};
+
+// Extra attributes on the <section> wrapper, per section type.
+const sectionAttrs = {
+  core_values: ' aria-roledescription="carousel" aria-label="Our core values"',
 };
 
 function renderSection(sec) {
@@ -67,7 +121,8 @@ function renderSection(sec) {
   const body = build(sec);
   if (!body) return ''; // no invented copy: empty sections are omitted
   const id = sec.id && /^[A-Za-z0-9-]+$/.test(sec.id) ? ` id="${sec.id}"` : '';
-  return `<section class="section"${id}>\n${heading(sec)}${body}\n</section>`;
+  const cls = sec.type === 'core_values' ? 'section core-values' : 'section';
+  return `<section class="${cls}"${id}${sectionAttrs[sec.type] || ''}>\n${heading(sec)}${body}\n</section>`;
 }
 
 export function render(page) {
@@ -77,7 +132,7 @@ export function render(page) {
     return `<li><a href="${esc(n.href)}"${cur}>${esc(n.label)}</a></li>`;
   }).join('\n');
   const sections = (page.sections || []).map(renderSection).filter(Boolean).join('\n');
-  const h1 = page.h1 ? `<h1>${esc(page.h1)}</h1>\n` : '';
+  const h1 = page.h1 ? `<h1${page.h1_hidden ? ' class="visually-hidden"' : ''}>${esc(page.h1)}</h1>\n` : '';
   return `<!DOCTYPE html>
 <html lang="en">
 <head>

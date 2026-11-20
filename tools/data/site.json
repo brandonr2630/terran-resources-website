@@ -1,10 +1,29 @@
 {
   "nav": [
-    { "label": "Home", "href": "/" },
-    { "label": "About Us", "href": "/about-us/" },
-    { "label": "Services", "href": "/services/" },
-    { "label": "Products", "href": "/products/" },
-    { "label": "Blog", "href": "/blog/" }
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Corporate Video",
+      "href": "/#corporate-video"
+    },
+    {
+      "label": "About Us",
+      "href": "/about-us/"
+    },
+    {
+      "label": "Services",
+      "href": "/services/"
+    },
+    {
+      "label": "Products",
+      "href": "/products/"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog/"
+    }
   ],
   "contact": {
     "address": "18591 South Dixie Highway, Cutler Bay, FL 33157, USA",
@@ -12,10 +31,140 @@
     "email": "info@terranresources.com"
   },
   "footer": "All content Copyright Terran Resources 2017",
-  "projects": [],
-  "clients": [],
-  "services": [],
-  "core_values": [],
+  "projects": [
+    {
+      "slug": "design-construction-supervision-commissioning-of-a-sand-slurry-feed-regulating-sump-jan-2014",
+      "title": "Design, Construction Supervision & Commissioning of a Sand Slurry Feed Regulating Sump (Jan 2014)",
+      "image": "/assets/img/Civil-Engineering-Design-05.png"
+    },
+    {
+      "slug": "geological-evaluation-for-proposed-sand-gravel-quarry-mar-2015",
+      "title": "Geological Evaluation for proposed Sand & Gravel Quarry (Mar 2015)",
+      "image": "/assets/img/Geological-Survey-07.png"
+    },
+    {
+      "slug": "geo-technical-investigation",
+      "title": "Geo-technical Investigation",
+      "image": "/assets/img/Geotechnical-Inv-08.png"
+    },
+    {
+      "slug": "eia-certificate-of-environmental-clearance-cec-45552015-may-2016",
+      "title": "EIA & Certificate of Environmental Clearance CEC 4555/2015 (May 2016)",
+      "image": "/assets/img/CEC-EIA-03.png"
+    },
+    {
+      "slug": "audit-of-construction-materials-testing-laboratorys-quality-management-systems-practice-sep-2016",
+      "title": "Audit of Construction Materials Testing Laboratory’s Quality Management Systems & Practice (Sep 2016)",
+      "image": "/assets/img/Quality-Audit-06.png"
+    },
+    {
+      "slug": "eia-certificate-of-environmental-clearance-cec-46012015-oct-2016",
+      "title": "EIA & Certificate of Environmental Clearance CEC 4601/2015 (Oct 2016)",
+      "image": "/assets/img/CEC-EIA-03.png"
+    },
+    {
+      "slug": "aggregate-processing-plant-upgrade-feb-oct-2016",
+      "title": "Aggregate Processing Plant Upgrade (Feb – Oct 2016)",
+      "image": "/assets/img/Plant-Upgrade-150-04.png"
+    },
+    {
+      "slug": "eia-certificate-of-environmental-clearance-43312014-nov-2016",
+      "title": "EIA & Certificate of Environmental Clearance 4331/2014 – Nov 2016",
+      "image": "/assets/img/CEC-EIA-03.png"
+    },
+    {
+      "slug": "ch-quarryworks-ltd-sand-gravel-plant-refit-and-upgrade-dec-2013",
+      "title": "C&H Quarryworks Ltd. – Sand & Gravel Plant Refit and Upgrade (Dec 2013)",
+      "image": "/assets/img/Plant-Upgrade-150-04.png"
+    },
+    {
+      "slug": "national-quarries-company-limited-nqcl-quality-audit-feb-2014",
+      "title": "National Quarries Company Limited (NQCL) Quality Audit – Feb 2014",
+      "image": "/assets/img/Quality-Audit2-09.png"
+    },
+    {
+      "slug": "vega-minerals-wash-plant-upgrade",
+      "title": "Vega Minerals Wash Plant Upgrade",
+      "image": "/assets/img/Plant-Upgrade-150-04.png"
+    }
+  ],
+  "clients": [
+    "Cumaca Blue Limestone Products",
+    "Carminco",
+    "SMI Industries",
+    "Line Power Electrical Services",
+    "Advance Readymix",
+    "National Quarries Company",
+    "Real Marketing (T&T)",
+    "Harry Persad & Sons",
+    "Vega Minerals"
+  ],
+  "services": [
+    {
+      "title": "Quarry Consulting",
+      "blurb": "Quarry Design, Processing and Mining"
+    },
+    {
+      "title": "Geological Surveys",
+      "blurb": "Soil testing for foundation design"
+    },
+    {
+      "title": "Construction Project Management",
+      "blurb": "From project design to completion"
+    },
+    {
+      "title": "Quarry CECs & EIAs",
+      "blurb": "Helping you navigate the legal and regulatory frameworks which govern the mineral extraction industry"
+    },
+    {
+      "title": "Blast Design & Supervision",
+      "blurb": "Quarrying and Mining related blast design services"
+    },
+    {
+      "title": "Reserve Estimates",
+      "blurb": "Estimation of life of aggregate/mineral reserves"
+    },
+    {
+      "title": "Crushing & Screening Processing Plant Commissioning Upgrades & Repairs",
+      "blurb": "A full range of services relating to all types of processing plants and equipment."
+    },
+    {
+      "title": "Civil Engineering Design",
+      "blurb": "Civil Project Design for domestic and commercial projects"
+    }
+  ],
+  "core_values": [
+    {
+      "word": "Resilience",
+      "phonetic": "re·sil·ience  (rəˈzilyəns)",
+      "definition": "The capacity to recover quickly from difficulties; toughness",
+      "image": "/assets/img/P1070126-5.jpg"
+    },
+    {
+      "word": "Integrity",
+      "phonetic": "in·teg·ri·ty  (inˈteɡrədē)",
+      "definition": "The quality of being honest and having strong moral principles; moral uprightness.",
+      "image": "/assets/img/AJR_9219-2.jpg"
+    },
+    {
+      "word": "Safety",
+      "phonetic": "safe·ty  ˈsāftē",
+      "definition": "The condition of being protected from or unlikely to cause danger, risk, or injury.",
+      "image": "/assets/img/DSC4362-2.jpg"
+    },
+    {
+      "word": "Environment",
+      "phonetic": "en·vi·ron·ment (inˈvīrənmənt)",
+      "definition": "The natural world, as a whole or in a particular geographical area, especially as affected by human activity.",
+      "image": "/assets/img/DSC_0681-2.jpg"
+    },
+    {
+      "word": "Sustainability",
+      "phonetic": "sus·tain·a·bil·i·ty  (səˌstānəˈbilədē)",
+      "definition": "The ability to be maintained at a certain rate or level;\navoidance of the depletion of natural resources in order to maintain an ecological balance.",
+      "image": "/assets/img/P9182030-2.jpg"
+    }
+  ],
   "pages": {
     "home": {
       "path": "/",
@@ -23,12 +172,36 @@
       "description": "A specialist mineral resource management and construction materials consulting company registered in the United States of America with operations in Florida and several Caribbean territories.",
       "sections": [
         {
-          "type": "text",
-          "paragraphs": [
-            "A specialist mineral resource management and construction materials consulting company registered in the United States of America with Operations in Florida and several Caribbean territories."
-          ]
+          "type": "core_values",
+          "id": "core-values"
+        },
+        {
+          "type": "services",
+          "id": "services"
+        },
+        {
+          "type": "video",
+          "id": "corporate-video",
+          "heading": "Corporate Video"
+        },
+        {
+          "type": "projects",
+          "id": "recent-projects",
+          "heading": "Our Recent Projects"
+        },
+        {
+          "type": "blog_teaser",
+          "id": "recent-blog-posts",
+          "heading": "Recent Blog Posts"
+        },
+        {
+          "type": "clients",
+          "id": "clients",
+          "heading": "Our Clients Include"
         }
-      ]
+      ],
+      "h1": "Terran Resources",
+      "h1_hidden": true
     },
     "about": {
       "path": "/about-us/",
@@ -60,5 +233,16 @@
       "description": "Terran Resources - Welcome",
       "sections": []
     }
+  },
+  "blog_teaser": {
+    "title": "Welcome",
+    "text": "Thank you for visiting the Terran Resources blog page.",
+    "href": "/welcome/",
+    "more": "Read more ..."
+  },
+  "video": {
+    "embed": "https://www.youtube-nocookie.com/embed/ZfGfx7hoqtQ",
+    "watch": "https://www.youtube.com/watch?v=ZfGfx7hoqtQ",
+    "title": "Terran Resources corporate video"
   }
 }
