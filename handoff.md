@@ -28,6 +28,18 @@ The site is rebuilt as static HTML/CSS/JS (17 pages: home, about-us, services, p
 - Deploy trigger is `workflow_dispatch` only; add push-to-master after cutover.
 - No contact form (the old one depended on Contact Form 7); the site shows address, phone and email only.
 
+## Cutover checklist (owner-confirmed, not yet done)
+
+1. In cPanel -> Domains, confirm which folder terranresources.com is served from (the workflow assumes `/home/terranre/public_html`).
+2. Back up `public_html` (including its `.htaccess`).
+3. Back up `.htaccess`, then remove ONLY the WordPress rewrite block. Do not delete or move the whole file: it may hold https/www redirects and PHP handler lines, and addon-site folders inside `public_html` may inherit it.
+4. Move aside (do not delete) the WordPress files (`wp-*`, `index.php`, `xmlrpc.php`, `license.txt`, `readme.html`, `wp-config.php`, etc.) and any same-named `blog/`, `project/`, `welcome/`, `assets/` folders.
+5. Run the deploy workflow manually: Actions -> Deploy -> Run workflow.
+6. `curl -I` all 17 URLs, including the no-trailing-slash forms.
+7. Then add the push-to-master trigger to `deploy.yml`.
+
+Notes: old WordPress feeds, `/wp-content/uploads/` image links and `/?p=` links will 404 after cutover. The monorepo-level `C:\dev\Projects\CLAUDE.md` still says this site has no deploy workflow (separate repo; update it separately).
+
 ## Next Up
 
 - Owner approves cutover, then back up `public_html`, move WordPress files into a dated folder, run the deploy workflow, `curl -I` the 6 top-level pages.

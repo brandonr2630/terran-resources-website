@@ -5,11 +5,24 @@
     var btn = document.querySelector('button.nav-toggle');
     var nav = document.querySelector('.site-nav');
     if (!btn || !nav) return;
-    btn.addEventListener('click', function () {
-      var open = btn.getAttribute('aria-expanded') !== 'true';
+    function setOpen(open) {
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       nav.classList.toggle('open', open);
+    }
+    btn.addEventListener('click', function () {
+      setOpen(btn.getAttribute('aria-expanded') !== 'true');
     });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        btn.focus();
+      }
+    });
+    if (window.matchMedia) {
+      var mq = window.matchMedia('(min-width: 768px)');
+      var onChange = function (e) { if (e.matches) setOpen(false); };
+      if (mq.addEventListener) mq.addEventListener('change', onChange); else if (mq.addListener) mq.addListener(onChange);
+    }
   }
 
   function initSlider(rootSelector) {
@@ -20,7 +33,7 @@
     if (slides.length < 2 || !viewport) return;
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var DELAY = 6000;
-    var current = 0, timer = null, userPaused = reduce, hovering = false, focusing = false;
+    var current = 0, timer = null, userPaused = reduce, userStarted = false, hovering = false, focusing = false;
 
     function btn(cls, label, text) {
       var b = document.createElement('button');
@@ -54,7 +67,8 @@
         if (n === current) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
       });
     }
-    function running() { return !userPaused && !hovering && !focusing; }
+    // An explicit Play press overrides hover/focus pauses; an explicit Pause always wins.
+    function running() { return !userPaused && (userStarted || (!hovering && !focusing)); }
     function sync() {
       clearTimeout(timer);
       timer = null;
@@ -66,13 +80,20 @@
     dots.forEach(function (d) { d.addEventListener('click', sync); });
     toggle.addEventListener('click', function () {
       userPaused = !userPaused;
+      userStarted = !userPaused;
       toggle.textContent = userPaused ? 'Play' : 'Pause';
       toggle.setAttribute('aria-label', userPaused ? 'Start automatic slide show' : 'Pause automatic slide show');
       sync();
     });
     root.addEventListener('mouseenter', function () { hovering = true; sync(); });
     root.addEventListener('mouseleave', function () { hovering = false; sync(); });
-    root.addEventListener('focusin', function () { focusing = true; sync(); });
+    root.addEventListener('focusin', function (e) {
+      // Only keyboard focus pauses; a mouse click on a control must not stop autoplay.
+      var kb = false;
+      try { kb = e.target.matches(':focus-visible'); } catch (err) { kb = true; }
+      focusing = kb;
+      sync();
+    });
     root.addEventListener('focusout', function (e) {
       if (!root.contains(e.relatedTarget)) { focusing = false; sync(); }
     });

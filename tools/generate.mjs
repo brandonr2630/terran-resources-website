@@ -18,6 +18,7 @@
  *       image = root-relative path like "/assets/img/x.png"; href = root-relative or https URL.
  *   { type: "core_values" | "services" | "video" | "projects" | "blog_teaser" | "clients", id?, heading? }
  *       render the shared site.json keys of the same name (home, services and blog pages).
+ *       blog_teaser also accepts level (2|3|4, default 3) for the teaser title heading.
  *   page.h1_hidden: true makes the h1 visually hidden (still read by screen readers).
  *   Any section may carry an optional "id" (letters, digits, dashes) used as the element id.
  * hrefs in site.json must be root-relative (/...) or https (no javascript: URLs).
@@ -78,7 +79,7 @@ const builders = {
     const slides = cv.map((c, i) => {
       const defn = String(c.definition || '').split('\n').filter(Boolean).map((l) => `<span>${esc(l)}</span>`).join('<br>');
       return `<figure class="slide" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${n}">
-<img src="${esc(c.image)}" alt="" width="1920" height="500"${i ? ' loading="lazy"' : ''}>
+<img src="${esc(c.image)}" alt="" width="1920" height="500">
 <figcaption><strong class="cv-word">${esc(c.word)}</strong><span class="cv-phonetic">${esc(c.phonetic)}</span><span class="cv-def">${defn}</span></figcaption>
 </figure>`;
     });
@@ -104,10 +105,11 @@ ${items.join('\n')}
 ${cards.join('\n')}
 </div>` : '';
   },
-  blog_teaser: () => {
+  blog_teaser: (sec) => {
     const b = site.blog_teaser;
     if (!b) return '';
-    return `<h3>${link(b.title, b.href)}</h3>
+    const l = [2, 3, 4].includes(sec.level) ? sec.level : 3;
+    return `<h${l}>${link(b.title, b.href)}</h${l}>
 <p>${esc(b.text)} ${link(b.more, b.href)}</p>`;
   },
   clients: () => {
@@ -146,6 +148,7 @@ export function render(page) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.className+=' js'</script>
 <title>${esc(page.title)}</title>
 <meta name="description" content="${esc(page.description)}">
 <link rel="icon" href="/assets/img/Web-Logo2-01.png">
@@ -171,7 +174,7 @@ ${h1}${sections}
 </main>
 <footer class="site-footer">
 <div class="container">
-<address>${esc(contact.address)}<br>Tel <a href="tel:${esc(contact.phone.replace(/\s+/g, ''))}">${esc(contact.phone)}</a><br><a href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></address>
+<address>${esc(contact.address)}<br>Tel <a href="tel:+${esc(contact.phone.replace(/\D+/g, ''))}">${esc(contact.phone)}</a><br><a href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></address>
 <p class="copyright">${esc(site.footer)}</p>
 </div>
 </footer>

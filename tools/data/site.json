@@ -299,7 +299,8 @@
       "description": "Terran Resources - Blog",
       "sections": [
         {
-          "type": "blog_teaser"
+          "type": "blog_teaser",
+          "level": 2
         }
       ],
       "h1": "Blog"
