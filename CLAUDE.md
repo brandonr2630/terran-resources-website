@@ -13,9 +13,9 @@ Static HTML/CSS/JS site, 17 pages: `/`, `/about-us/`, `/services/`, `/products/`
 
 ## Deployment
 
-Manual only: Actions -> "Deploy to GreenGeeks (rsync over SSH)" -> Run workflow (`.github/workflows/deploy.yml`). It runs the check, then rsyncs only the site files (`index.html`, `about-us/`, `services/`, `products/`, `blog/`, `welcome/`, `project/`, `assets/`) to `/home/terranre/public_html` with no `--delete`. Secrets: `SSH_PRIVATE_KEY`, `SSH_HOST`, `SSH_USER`, optional `SSH_PORT` (default 22). The cPanel Fileman API is not used (the host WAF blocks it).
+Auto-deploys on every push to `master` that touches site files (path-filtered), or manually via Actions -> "Deploy to GreenGeeks (rsync over SSH)" -> Run workflow (`.github/workflows/deploy.yml`). It runs the check, then rsyncs only the site files (`index.html`, `about-us/`, `services/`, `products/`, `blog/`, `welcome/`, `project/`, `assets/`) to `/home/terranre/public_html` with no `--delete`. Secrets: `SSH_PRIVATE_KEY`, `SSH_HOST`, `SSH_USER`, optional `SSH_PORT` (default 22). The cPanel Fileman API is not used (the host WAF blocks it).
 
-**Cutover not done yet:** moving the WordPress files aside in `public_html` is a separate, owner-confirmed server step. Until then the live site is still the broken WordPress install. Add a push-to-master trigger to the workflow only after cutover.
+**Cutover done 2026-11-20:** WordPress files moved to `/home/terranre/wp-retired-2026-11-20/` (original `.htaccess` saved there). Other sites in `public_html` (`erp.*`, `q2m.io`, `lab.*`, `staging-erp.*`, `toddsroadcoctt`) must stay untouched.
 
 ## Conventions
 
