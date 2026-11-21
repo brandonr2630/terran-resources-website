@@ -151,7 +151,7 @@ export function render(page) {
 <script>document.documentElement.className+=' js'</script>
 <title>${esc(page.title)}</title>
 <meta name="description" content="${esc(page.description)}">
-<link rel="icon" href="/assets/img/Web-Logo2-01.png">
+<link rel="icon" type="image/svg+xml" href="/assets/img/terran-logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="${FONTS}">
@@ -160,7 +160,7 @@ export function render(page) {
 <body>
 <header class="site-header">
 <div class="container header-inner">
-<a class="logo" href="/"><img src="/assets/img/Web-Logo2-01.png" width="280" height="140" alt="Terran Resources"></a>
+<a class="logo" href="/"><img src="/assets/img/terran-logo.svg" width="104" height="96" alt="Terran Resources"></a>
 <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button>
 <nav class="site-nav" id="site-nav" aria-label="Main">
 <ul>
