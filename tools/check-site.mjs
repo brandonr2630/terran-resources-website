@@ -9,7 +9,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const partial = process.argv.includes('--partial');
 const SKIP = new Set(['docs', 'tools', '.git', '.claude', '.superpowers', 'node_modules']);
 const REQUIRED = ['/', '/about-us/', '/services/', '/products/', '/blog/', '/welcome/'];
-const ICON = '/assets/img/Web-Logo2-01.png';
+const ICON = '/assets/img/terran-logo.svg';
 
 const red = (s) => `\x1b[31m${s}\x1b[0m`;
 const yellow = (s) => `\x1b[33m${s}\x1b[0m`;
@@ -54,8 +54,8 @@ for (const file of pages) {
     fail(`${rel}: missing meta description`);
   }
   if (!/<meta\s[^>]*name=["']viewport["']/i.test(html)) fail(`${rel}: missing viewport meta`);
-  if (!/<link\s[^>]*rel=["']icon["'][^>]*href=["']\/assets\/img\/Web-Logo2-01\.png["']/i.test(html)
-    && !/<link\s[^>]*href=["']\/assets\/img\/Web-Logo2-01\.png["'][^>]*rel=["']icon["']/i.test(html)) {
+  if (!/<link\s[^>]*rel=["']icon["'][^>]*href=["']\/assets\/img\/terran-logo.svg["']/i.test(html)
+    && !/<link\s[^>]*href=["']\/assets\/img\/terran-logo.svg["'][^>]*rel=["']icon["']/i.test(html)) {
     fail(`${rel}: missing icon link (${ICON})`);
   }
 
