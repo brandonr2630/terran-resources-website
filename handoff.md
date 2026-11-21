@@ -20,6 +20,8 @@
 
 The site is rebuilt as static HTML/CSS/JS (17 pages: home, about-us, services, products, blog, welcome, 11 projects). The old WordPress site is retired: it broke on 2026-10-31 (Contact Form 7 needed PHP 8.3+; WPBakery and Slider Revolution are PHP-7-only). Content came from the Wayback snapshot of 2026-08-13. The deploy workflow exists but has not been run.
 
+Footer contact (commit `8d3f024`): address is two lines (71 Warren Road, Bejucal / Cunupia, Trinidad W.I.) and phone is (868) 230 9702. In `tools/data/site.json`, `contact.address` accepts a list of lines and `contact.phone_tel` holds the `tel:` number (the old digits-only derivation assumed a leading country code). Edit those fields, then run `node tools/generate.mjs`.
+
 ---
 
 ## Known Issues / Blockers
