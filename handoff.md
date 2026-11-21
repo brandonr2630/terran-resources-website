@@ -22,7 +22,7 @@ The site is rebuilt as static HTML/CSS/JS (17 pages: home, about-us, services, p
 
 Footer contact (commit `8d3f024`): address is two lines (71 Warren Road, Bejucal / Cunupia, Trinidad W.I.) and phone is (868) 230 9702. In `tools/data/site.json`, `contact.address` accepts a list of lines and `contact.phone_tel` holds the `tel:` number (the old digits-only derivation assumed a leading country code). Edit those fields, then run `node tools/generate.mjs`.
 
-Logo (2026): `assets/img/terran-logo.svg` (source: `Z:-Terran-Resources-Ltd-TT\CORPORATE INFO\ARTWORK6 LOGO\Terran New Logo.svg`) is the header logo and favicon. The mark is roughly square, so the header image is sized by height: 140px desktop, 100px under 768px (`.logo img` in `assets/css/style.css`; `width`/`height` attrs in `tools/generate.mjs`, 152x140). The old `Web-Logo2-01.png` was removed.
+Logo (2026): `assets/img/terran-logo.svg` (source: `Z:\01-Terran-Resources-Ltd-TT\CORPORATE INFO\ARTWORK\2026 LOGO\Terran New Logo.svg`) is the header logo and favicon. The mark is roughly square, so the header image is sized by height: 140px desktop, 100px under 768px (`.logo img` in `assets/css/style.css`; `width`/`height` attrs in `tools/generate.mjs`, 152x140). The old `Web-Logo2-01.png` was removed.
 
 ---
 
