@@ -1,11 +1,25 @@
 name: Deploy to GreenGeeks (rsync over SSH)
 
-# Manual runs only. The push-to-master trigger must be added AFTER the
-# owner-approved server cutover (WordPress files moved aside), otherwise a
-# push would overlay the static site on the live WordPress docroot.
+# Deploys on every push to master that touches site files, and on manual runs.
 # The cPanel Fileman HTTP API is not used: the host WAF blocks it (HTTP 415).
 on:
+  push:
+    branches: [master]
+    paths:
+      - 'index.html'
+      - 'about-us/**'
+      - 'services/**'
+      - 'products/**'
+      - 'blog/**'
+      - 'welcome/**'
+      - 'project/**'
+      - 'assets/**'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
 
 env:
   DEPLOY_DIR: /home/terranre/public_html
